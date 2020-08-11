@@ -1,6 +1,8 @@
 import King from '../pieces/king.js';
 import Queen from '../pieces/queen.js';
+import Bishop from '../pieces/bishop.js';
 import Knight from '../pieces/knight.js';
+
 
 export default function InitializeChessboard() {
     // Initialize a squares array with a length of 64 and fill values with null
@@ -13,7 +15,13 @@ export default function InitializeChessboard() {
 
     squares[3] = new Queen(2);
     squares[59] = new Queen(1);
-    //1, 6, 57, 62
+
+    // 2, 5, 58, 61
+    squares[2] = new Bishop(2);
+    squares[5] = new Bishop(2);
+    squares[58] = new Bishop(1);
+    squares[61] = new Bishop(1);
+
     squares[1] = new Knight(2);
     squares[6] = new Knight(2);
     squares[57] = new Knight(1);
