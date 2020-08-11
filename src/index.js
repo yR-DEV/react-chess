@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+import Game from './components/game.js';
+
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Hello!</h1>
+    <Game />
   </React.StrictMode>,
   document.getElementById('root')
 );
