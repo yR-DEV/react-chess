@@ -5,9 +5,11 @@ import Square from './square.js';
 
 export default class Board extends React.Component {
 
-    renderSquare(num, squareShading) {
+    renderSquare(i, squareShading) {
         return <Square
         shade={squareShading}
+        style={this.props.squares[i] ? this.props.squares[i].style : null}
+        piece={this.props.squares[i]}
         />
     }
 
@@ -40,6 +42,7 @@ export default class Board extends React.Component {
     }
 };
 
+// Checking whether or not the RowNumber/ColumnNumber is even
 function isItEven(number){
-    return number % 2 == 0;
+    return number % 2 === 0;
 };
