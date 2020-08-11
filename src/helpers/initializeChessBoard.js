@@ -2,6 +2,7 @@ import King from '../pieces/king.js';
 import Queen from '../pieces/queen.js';
 import Bishop from '../pieces/bishop.js';
 import Knight from '../pieces/knight.js';
+import Rook from '../pieces/rook.js';
 
 
 export default function InitializeChessboard() {
@@ -26,6 +27,11 @@ export default function InitializeChessboard() {
     squares[6] = new Knight(2);
     squares[57] = new Knight(1);
     squares[62] = new Knight(1);
+
+    squares[0] = new Rook(2);
+    squares[7] = new Rook(2);
+    squares[56] = new Rook(1);
+    squares[63] = new Rook(1);
 
     return squares;
 }

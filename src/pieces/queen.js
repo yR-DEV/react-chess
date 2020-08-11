@@ -15,7 +15,7 @@ export default class Queen extends Piece {
         return (Math.abs(startSquare - endSquare) % 7 === 0 ||
                 Math.abs(startSquare - endSquare) % 8 === 0 ||
                 Math.abs(startSquare - endSquare) % 9 === 0 || 
-                (endSquare >= (startSquare - mod) || 
+                (endSquare >= (startSquare - mod) && 
                     (endSquare > (startSquare + difference))));
     }
 
