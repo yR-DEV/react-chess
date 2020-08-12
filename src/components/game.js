@@ -9,10 +9,12 @@ export default class Game extends React.Component {
         super();
         this.state = {
             squares: InitializeChessBoard(),
+            whitePiecesCaptured: [],
+            blackPiecesCaptured: [],
             player: 1,
-            turn: 'white',
             selectedSquare: -1,
-            status: 'YOU SUCK'
+            status: '',
+            turn: 'white',
         }
     }
 
@@ -22,31 +24,71 @@ export default class Game extends React.Component {
         if (this.state.selectedSquare === -1) {
             if(!squares[i] || squares[i].player !== this.state.player) {
                 this.setState({status: "WRONGK"});
+                if (squares[i]) {
+                    squares[i].style = { ...squares[i].style, backgroundColor: "" };
+                }
             } else {
-                squares[i].style = {... squares[i].style, backgroundColor: "#ff0569"}
+                squares[i].style = { ...squares[i].style, backgroundColor: "#ff0569" };
                 this.setState({
-                    status: "Choose Destination Square",
+                    status: "ChooZ MOVE",
                     selectedSquare: i
                 });
-            }
-        } 
-        // else if (this.state.selectedSquare > -1) {
-        //     delete squares[this.state.selectedSquare].style.backgroundColor;
-        //     if(squares[i] && squares[i].player === this.state.player) {
-        //         this.setState({
-        //             status: "NOPE",
-        //             selectedSquare: -1
-        //         })
-        //     }
-        // } 
-        else {
-            const squares = this.state.squares.slice();
-            const isDestSquareOccupied = squares[i] ? true : false;
-            const isMovePossible = squares[this.state.selectedSquare].isMovePossible(this.state.selectedSquare, i,isDestSquareOccupied );
-            const getMovePath = squares[this.state.selectedSquare].getMovePath(this.state.selectedSquare, i);
-            const isMoveLegal = this.isMoveLegal(getMovePath);
+            }  
+            return;
         }
-    }
+
+        squares[this.state.selectedSquare].style = { ...squares[this.state.selectedSquare].style, backgroundColor: "" };
+
+        if (squares[i] && squares[i].player === this.state.player) {
+            this.setState({
+                status: "WRONGK",
+                selectedSquare: -1
+            });
+        } else {
+            const whitePiecesCaptured = [];
+            const blackPiecesCaptured = [];
+            const isDestSquareOccupied = Boolean(squares[i]);
+            const isMovePossible = squares[this.state.selectedSquare].isMovePossible(this.state.selectedSquare, i, isDestSquareOccupied);
+            
+            // Moves captured pieces off the board and into an array for the opposite player
+            if (isMovePossible) {
+                // console.log("Move possible.");
+                if (squares[i] !== null) {
+                    // console.log("Square not null");
+                    if (squares[i].player === 1) {
+                        whitePiecesCaptured.push(squares[i]);
+                    } else {
+                        blackPiecesCaptured.push(squares[i]);
+                    }
+                }
+
+                squares[i] = squares[this.state.selectedSquare];
+                squares[this.state.selectedSquare] = null;
+
+                if (false) {
+
+                } else {
+                    let player = this.state.player === 1 ? 2 : 1;
+                    let turn = this.state.turn === 'white' ? 'black' : 'white';
+
+                    this.setState({
+                        selectedSquare: -1,
+                        squares,
+                        whitePiecesCaptured: [...whitePiecesCaptured, ...whitePiecesCaptured],
+                        blackPiecesCaptured: [...blackPiecesCaptured, ...blackPiecesCaptured],
+                        player,
+                        status: '',
+                        turn
+                    });
+                }
+            } else {
+                this.setState({
+                    status: "WRONGK",
+                    selectedSquare: -1
+                });
+            }
+        }
+    } 
 
     isMoveLegal(getMovePath) {
         let isLegal = true;
@@ -68,7 +110,11 @@ export default class Game extends React.Component {
                         onClick = {(i) => this.handleClick(i)}
                     />
                 </div>
-                <div className="game-status">{this.state.status}</div>
+                <div className="game-status">
+                    {this.state.status}
+                    {this.state.player}
+                    {this.state.turn}
+                    </div>
             </div>
         )
     }
