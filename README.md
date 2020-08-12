@@ -22,6 +22,7 @@
 
 ### Board Array
 |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |  8 |  9 |  0 | 10 | 11 | 12 | 13 | 14 |
 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 |
 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 |
@@ -29,13 +30,7 @@
 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 |
 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 |
 | 55 | 56 | 57 | 58 | 59 | 60 | 61 | 63 |
-________
-- |0 |1 |2 |3 |4 |5 |6 |7 |
-- |8 |9 |10|11|12|13|14|15|
-- |16|17|18|19|20|21|22|23|
-- |24|25|26|27|28|29|30|31|
-- |32|33|34|35|36|37|38|39|
-- etc. etc.
+
 - \-----------------------------
 - Logic in held in each piece file contains a method called isMoveLegal() whereas simple math determines if the movement from the starting square to the square chosen by the user is allowed within the movement parameters of each piece. 
 - For example: the Bishop piece can only move diagonally. If the Bishop was in square index 2, moving one square would put them in either 9 or 11.
