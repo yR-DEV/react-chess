@@ -1,6 +1,6 @@
 # REACTJS CHESS
-- Simple chess game created in ReactJS
-\n
+- Simple chess game created in ReactJS  
+
 [<img src="https://cdn.discordapp.com/attachments/169789071449653250/742897800492220507/unknown.png">](https://cdn.discordapp.com/attachments/169789071449653250/742897800492220507/unknown.png)
 
 ## Development
