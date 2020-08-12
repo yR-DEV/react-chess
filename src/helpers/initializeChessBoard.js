@@ -3,6 +3,7 @@ import Queen from '../pieces/queen.js';
 import Bishop from '../pieces/bishop.js';
 import Knight from '../pieces/knight.js';
 import Rook from '../pieces/rook.js';
+import Pawn from '../pieces/pawn.js';
 
 
 export default function InitializeChessboard() {
@@ -32,6 +33,12 @@ export default function InitializeChessboard() {
     squares[7] = new Rook(2);
     squares[56] = new Rook(1);
     squares[63] = new Rook(1);
+
+    for (let i = 8; i < 16; i++) {
+        squares[i] = new Pawn(2);
+        // adds 40 to get to bottom of board for player 1s pawns
+        squares[i + 40] = new Pawn(1);
+    }
 
     return squares;
 }
