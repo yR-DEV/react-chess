@@ -56,7 +56,9 @@ ol, ul {
   min-height: 50px;
 }
 
-
+.captured-pieces {
+  margin-left: 20px;
+}
 
 /*Board color scheme Wheat from http://omgchess.blogspot.com/2015/09/chess-board-color-schemes.html*/
 .dark-square{

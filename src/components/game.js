@@ -3,6 +3,7 @@ import React from 'react';
 import '../index.css'
 import Board from './board.js';
 import InitializeChessBoard from '../helpers/initializeChessBoard.js';
+import CapturedPieces from './captured-pieces.js';
 
 export default class Game extends React.Component {
     constructor() {
@@ -66,20 +67,20 @@ export default class Game extends React.Component {
                 squares[this.state.selectedSquare] = null;
 
                 if (false) {
-
+                    // logic for Check/Checkmate goes here
                 } else {
                     let player = this.state.player === 1 ? 2 : 1;
                     let turn = this.state.turn === 'white' ? 'black' : 'white';
 
-                    this.setState({
+                    this.setState(oldState => ({
                         selectedSquare: -1,
                         squares,
-                        whitePiecesCaptured: [...whitePiecesCaptured, ...whitePiecesCaptured],
-                        blackPiecesCaptured: [...blackPiecesCaptured, ...blackPiecesCaptured],
+                        whitePiecesCaptured: [...oldState.whitePiecesCaptured, ...whitePiecesCaptured],
+                        blackPiecesCaptured: [...oldState.blackPiecesCaptured, ...blackPiecesCaptured],
                         player,
                         status: '',
                         turn
-                    });
+                    }));
                 }
             } else {
                 this.setState({
@@ -90,6 +91,7 @@ export default class Game extends React.Component {
         }
     } 
 
+    // Need to replace this with better logic for checking if path is clear
     isMoveLegal(getMovePath) {
         let isLegal = true;
         for(let i = 0; i < getMovePath.length; i++) {
@@ -111,10 +113,19 @@ export default class Game extends React.Component {
                     />
                 </div>
                 <div className="game-status">
-                    {this.state.status}
-                    {this.state.player}
-                    {this.state.turn}
+                    {this.state.status} <br/>
+                    {this.state.player} <br/>
+                    {this.state.turn} <br/>
+                    {this.state.selectedSquare} <br/>
+                    <div className="captured-pieces">
+
+                        {<CapturedPieces
+                            whitePiecesCaptured={this.state.whitePiecesCaptured}
+                            blackPiecesCaptured={this.state.blackPiecesCaptured}
+                        />
+                        }
                     </div>
+                </div>
             </div>
         )
     }
