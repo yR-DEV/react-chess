@@ -10,6 +10,7 @@ export default class Pawn extends Piece {
     }
 
     isMovePossible(startSquare, endSquare, isDestintionEnemyOccupied) {
+        // this.getMovePath(startSquare, endSquare);
         if (this.player === 1) {
             if((endSquare === startSquare - 8 && !isDestintionEnemyOccupied) || (endSquare === startSquare - 16 && this.initialPawnSquares[1].indexOf(startSquare) !== -1)){
                 return true;
@@ -26,12 +27,13 @@ export default class Pawn extends Piece {
         // Returns false if move is out of bounds or if there is another piece in destination square
         return false;
     }
-
+    
     // Will ONLY return an array if the pawn moves two spaces initially. 
     // because moving one square has no movement path to add to an array
     getMovePath(startSquare, endSquare) {
         // Checks to see if the move is down or up
         if (endSquare === startSquare - 16) {
+            // console.log([startSquare - 8]);
             return [startSquare - 8];
         } else if (endSquare === startSquare + 16) {
             return [startSquare + 8];

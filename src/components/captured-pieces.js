@@ -26,5 +26,4 @@ export default class CapturedPieces extends React.Component {
             </div>
         );
     }
-
 } 

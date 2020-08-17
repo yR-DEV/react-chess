@@ -9,8 +9,7 @@ export default class Bishop extends Piece {
     // Bishop can only move diagonally in the 2 different directions both are calculated
     // by an absolute difference of 7 or 9
     isMovePossible(startSquare, endSquare) {
-        return (Math.abs(startSquare - endSquare) % 9 === 0 ||
-                Math.abs(startSquare - endSquare) % 7 === 0);
+        return (Math.abs(startSquare - endSquare) % 9 === 0 || Math.abs(startSquare - endSquare) % 7 === 0);
     }
 
     getMovePath(startSquare, endSquare) {

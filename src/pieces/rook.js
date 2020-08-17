@@ -11,7 +11,7 @@ export default class Rook extends Piece {
         let difference = 8 - modulus;
 
         return (Math.abs(startSquare - endSquare) % 8 === 0 ||  
-        (endSquare >= (startSquare - modulus) && (endSquare > (startSquare + difference))));
+        (endSquare >= (startSquare - modulus) && endSquare < (startSquare + difference)));
     }
 
     getMovePath(startSquare, endSquare) {
