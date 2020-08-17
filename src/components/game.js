@@ -25,7 +25,7 @@ export default class Game extends React.Component {
         
 
 
-
+        // -------------------------------------------------------------------------------------------------------------------------------------
         // FIRST MOVE/CLICK LOGIC BLOCK
         // Checking to see if a square has been selected yet
         // this element of the state changes after a correct selection has been made by the player
@@ -58,7 +58,7 @@ export default class Game extends React.Component {
 
 
 
-
+        // -----------------------------------------------------------------------------------------------------------------------------------------
         // SECOND MOVE/CLICK LOGIC BLOCK
         // THIS BLOCK WILL ONLY BE REACHED IF selectedSquare != -1 I.E. This is the second click when a player is moving the corresponding piece
         // If the squre clicked is null in array (i.e. there is NOT a piece in thagt square) AND 
@@ -72,10 +72,10 @@ export default class Game extends React.Component {
         // and we will eventually move/take pieces in this conditional block    
         } else {
 
-             // Getting the movement path array, need to check if any of them are null
-             // const movePathArray = squares[this.state.selectedSquare].getMovePath(this.state.selectedSquare, i);
-             // const isPathClean = (movePathArray, squares) => movePathArray.reduce((acc, curr) => !squares[curr] ?  false : true);
-             // let isPathClean = movePathArray.forEach(element => {if (!squares[element]) console.log("fak");})
+            // Getting the movement path array, need to check if any of them are null
+            // const movePathArray = squares[this.state.selectedSquare].getMovePath(this.state.selectedSquare, i);
+            // const isPathClean = (movePathArray, squares) => movePathArray.reduce((acc, curr) => !squares[curr] ?  false : true);
+            // let isPathClean = movePathArray.forEach(element => {if (!squares[element]) console.log("fak");})
 
             // empty arrays for captured pieces
             const whitePiecesCaptured = [];
@@ -85,10 +85,12 @@ export default class Game extends React.Component {
             // To determine whether or not the move is possible we call on the method of the selected piece
             // the isDestSquareOccupied is only for the pawn piece who cannot take enemy pieces in a forward direction
             const isMovePossible = squares[this.state.selectedSquare].isMovePossible(this.state.selectedSquare, i, isDestSquareOccupied);
+            const getMovePath = squares[this.state.selectedSquare].getMovePath(this.state.selectedSquare, i);
+            const checkMovePath = this.isMoveLegal(getMovePath);
 
 
             // if the move is demeed possible by the method of the selected square and saved into the constant above, below block will execute
-            if (isMovePossible) {
+            if (isMovePossible && checkMovePath) {
                 // If the second selected square is NOT NULL i.e. it is occupied by an enemy piece that the player is going to capture
                 // we are going to determine the player and place that captured piece into the appropiate array and move it off board
                 if (squares[i] !== null) {
@@ -134,16 +136,16 @@ export default class Game extends React.Component {
         }
     } 
 
-    // Need to replace this with better logic for checking if path is clear
-    // isMoveLegal(getMovePath) {
-    //     let isLegal = true;
-    //     for(let i = 0; i < getMovePath.length; i++) {
-    //         if(this.state.squares[getMovePath[i]] !== null) {
-    //             isLegal = false;
-    //         }
-    //     }
-    //     return isLegal;
-    // }
+   // Need to replace this with better logic for checking if path is clear
+    isMoveLegal(getMovePath) {
+        let isLegal = true;
+        for(let i = 0; i < getMovePath.length; i++) {
+            if(this.state.squares[getMovePath[i]] !== null) {
+                isLegal = false;
+            }
+        }
+        return isLegal;
+    }
 
     render() {
         return (
