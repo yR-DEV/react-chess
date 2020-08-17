@@ -10,6 +10,8 @@ export default class Rook extends Piece {
         let modulus = startSquare % 8;
         let difference = 8 - modulus;
 
+        // % 8 meaning vertical movement for rook
+        // logic after || indicating a move that exists within the same line. 
         return (Math.abs(startSquare - endSquare) % 8 === 0 ||  
         (endSquare >= (startSquare - modulus) && (endSquare > (startSquare + difference))));
     }

@@ -10,15 +10,21 @@ export default class Pawn extends Piece {
     }
 
     isMovePossible(startSquare, endSquare, isDestintionEnemyOccupied) {
+        // If player is 1, pawn can move 1 sq up indicated by subtracting 8 from array
+        // can move 2 spaces up if pawn is still in its' initial position
         if (this.player === 1) {
             if((endSquare === startSquare - 8 && !isDestintionEnemyOccupied) || (endSquare === startSquare - 16 && this.initialPawnSquares[1].indexOf(startSquare) !== -1)){
                 return true;
+            // If the pawn is going to take a piece they have to move diagonally indicated by subtracting either 7 or 9
             } else if(isDestintionEnemyOccupied && (endSquare === startSquare - 7 || endSquare === startSquare - 9)){
                 return true;
             }
+        // If player is 2, pawn can move 1 sq down indicated by adding 8 from array
+        // can move 2 spaces down if pawn is still in its' initial position
         } else if (this.player === 2) {
             if((endSquare === startSquare + 8 && !isDestintionEnemyOccupied) || (endSquare === startSquare + 16 && this.initialPawnSquares[1].indexOf(startSquare) !== + 1)){
                 return true;
+            // If the pawn is going to take a piece they have to move diagonally indicated by adding either 7 or 9    
             } else if(isDestintionEnemyOccupied && (endSquare === startSquare + 7 || endSquare === startSquare + 9)){
                 return true;
             }

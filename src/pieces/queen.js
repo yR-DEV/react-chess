@@ -12,6 +12,10 @@ export default class Queen extends Piece {
         let mod = startSquare % 8;
         let difference = 8 - mod;
 
+        // % 7 indicates diagonal movement top left to bottom right
+        // % 8 indicates vertical movement
+        // % 9 indicates diagonal movement top right to bottom left
+        // last but of logic indicates horizontal movement on same line
         return (Math.abs(startSquare - endSquare) % 7 === 0 ||
                 Math.abs(startSquare - endSquare) % 8 === 0 ||
                 Math.abs(startSquare - endSquare) % 9 === 0 || 

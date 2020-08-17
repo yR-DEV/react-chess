@@ -7,6 +7,7 @@ export default class Knight extends Piece {
             : "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"));
     }
 
+    // Hard coded knight movement because it jumps around and is a different kind of piece
     isMovePossible(startSquare, endSquare) {
         return (startSquare + 6 === endSquare ||
                 startSquare - 6 === endSquare ||

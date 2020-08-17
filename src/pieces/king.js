@@ -7,6 +7,7 @@ export default class King extends Piece {
                         : "https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_kdt45.svg"));
     }
 
+    // King can only move 1 square in any direction, values hardcoded
     isMovePossible(startSquare, endSquare) {
         return (startSquare + 1 === endSquare ||
                 startSquare - 1 === endSquare ||
